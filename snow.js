@@ -1,6 +1,6 @@
 		// Parameters for scale and speed
-		const scale = 2;
-		const speed = 0.5;
+		const scale = 1;
+		const speed = 8;
 
 		// Create X number of SVG snowflakes
 		const X = 40;
