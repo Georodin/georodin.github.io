@@ -10,6 +10,7 @@
             color: white;
             font-size: 240px;
             text-align: center;
+			overflow: hidden;
         }
 		/* styles.css */
 		body, html {
@@ -55,7 +56,7 @@
 			console.log(diffInSeconds);
 
             // If it's Tuesday and the time is between 12:00 PM and 12:20 PM, display "DÖNER!"
-            if (dayOfWeek === 2 && diffInSeconds >= -1200 && diffInSeconds <= 0) {
+            if (dayOfWeek === 4 && diffInSeconds >= -1200 && diffInSeconds <= 0) {
 				if(!flag){
 					spawnBursts();
 					flag = true;
