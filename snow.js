@@ -39,7 +39,6 @@
 				
 				// Update rotation
 				this.rotation += this.rotationSpeed * rotationSpeed;
-				console.log(this.rotation);
 				this.svgElement.style.transform = `rotate(${this.rotation}deg) scale(${this.scale})`;
 
 				if (this.y > window.innerHeight + deleteThreshhold || this.y < -deleteThreshhold || this.x < -deleteThreshhold || this.x > window.innerWidth + deleteThreshhold) {
