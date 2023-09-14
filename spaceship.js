@@ -59,34 +59,19 @@ class Laser {
 				snowflakes.push(new Snowflake());
 				this.div.remove();
 
-				// Update score
-				let string = snowflake.svgElement.src;
-				let justNumbers = string.replace(/[^0-9]/g, "");
-				let index = parseInt(justNumbers)-1;
-				score[index]++;
-				updateScore();
+
 				
-				return true;
-			}
-		}
-		for (let i = 0; i < snowflakes.length; i++) {
-			let snowflake = snowflakes[i];
-			let snowflakeRect = snowflake.svgElement.getBoundingClientRect();
-			let thisRect = this.div.getBoundingClientRect();
-
-			if (thisRect.left < snowflakeRect.right &&
-				thisRect.right > snowflakeRect.left &&
-				thisRect.top < snowflakeRect.bottom &&
-				thisRect.bottom > snowflakeRect.top) {
-
-				// Remove snowflake and laser
-				snowflake.remove();
-				snowflakes.splice(i, 1);
-				snowflakes.push(new Snowflake());
-				this.div.remove();
-
-				// Update score
-				score++;
+				
+				if (now.getDay() === 4) {
+					score[0]++;
+				}else{
+					// Update score
+					let string = snowflake.svgElement.src;
+					let justNumbers = string.replace(/[^0-9]/g, "");
+					let index = parseInt(justNumbers)-1;
+					score[index]++;
+				}
+				
 				updateScore();
 				
 				return true;
@@ -104,9 +89,14 @@ class Laser {
 }
 
 function updateScore() {
-  for (let i = 0; i <= 11; i++) {
-    document.getElementById(`score${i}`).innerText = `${score[i]}`;
-  }
+	if (now.getDay() === 4) {
+		document.getElementById(`score0`).innerText = `${score[0]}`;
+	}else{
+	  for (let i = 0; i <= 11; i++) {
+		document.getElementById(`score${i}`).innerText = `${score[i]}`;
+	  }
+	}
+
 }
 
 
@@ -135,7 +125,7 @@ document.addEventListener('click', function() {
     lasers.push(new Laser(spaceship.x, spaceship.y));
 });
 
-const svgArray = [
+let svgArray = [
   'Artboard_1.svg',
   'Artboard_2.svg',
   'Artboard_3.svg',
@@ -152,6 +142,11 @@ const svgArray = [
 
 function displaySVGs() {
   const svgContainer = document.getElementById('svg-container');
+	if (now.getDay() === 4) {
+		svgArray = [
+		  'Doener.svg'
+		];
+	}
   
   for (let i = 0; i < svgArray.length; i++) {
     // Create a wrapper div for each SVG
@@ -171,7 +166,7 @@ function displaySVGs() {
     const integerOverlay = document.createElement('div');
     integerOverlay.className = 'integer-overlay';
     integerOverlay.id = `score${i}`;  // Unique id for each overlay
-    integerOverlay.innerText = i + 1; // Put the integer (starting from 1)
+    integerOverlay.innerText = "0"; // Put the integer (starting from 1)
     svgWrapper.appendChild(integerOverlay);
     
     // Append to the container

@@ -3,6 +3,7 @@
 		const scale = 1;
 		const deleteThreshhold = 120;
 		const rotationSpeed = 3;
+		const now = new Date();
 
 		// Snowflake class to handle individual snowflake properties
 		class Snowflake {
@@ -22,7 +23,13 @@
 
 				const randomSVG = Math.floor(Math.random() * 12) + 1; // 1 to 12
 				this.svgElement = document.createElement('img');
-				this.svgElement.src = `Artboard_${randomSVG}.svg`; // Assuming the SVG files are in the same directory
+				const dayOfWeek = now.getDay();
+				if (dayOfWeek === 4) {
+					this.svgElement.src = `Doener.svg`;
+				}else{
+					this.svgElement.src = `Artboard_${randomSVG}.svg`;
+				}
+				 // Assuming the SVG files are in the same directory
 				this.svgElement.classList.add('snowflake');
 				this.svgElement.style.width = `${100 * scale}px`;
 				this.svgElement.style.height = `${100 * scale}px`;
